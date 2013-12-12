@@ -58,7 +58,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\S3Publish\SiteUp.csproj">
+    <ProjectReference Include="..\SiteUp\SiteUp.csproj">
       <Project>{588F6B12-46CC-4362-ABEC-040F50B09715}</Project>
       <Name>SiteUp</Name>
     </ProjectReference>

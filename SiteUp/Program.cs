@@ -11,11 +11,11 @@ namespace SiteUp
         static void Main(string[] args)
         {
             string path = null;
-            bool help = false;
+            bool showHelp = false;
             var options = new OptionSet()
             {
                 {"p|path=", "Path to folder to publish", p => path = p},
-                {"h|help"}
+                {"h|help", "show this message and exit", v => showHelp = v != null},
             };
 
             try
@@ -26,6 +26,12 @@ namespace SiteUp
             {
                 Console.WriteLine (ex.Message);
                 Console.WriteLine ("Try `siteup --help' for more information.");
+                return;
+            }
+
+            if (showHelp || path == null)
+            {
+                ShowHelp(options);
                 return;
             }
 
@@ -57,6 +63,11 @@ namespace SiteUp
             {
                 Console.WriteLine("All up to date");
             }
+        }
+
+        private static void ShowHelp(OptionSet options)
+        {
+            options.WriteOptionDescriptions(Console.Out);
         }
 
         private static void OutputToConsoleFilesToSync(IEnumerable<CompareResult> compareResults)
