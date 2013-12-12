@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using SiteUp.Mono.Options;
@@ -17,6 +18,8 @@ namespace SiteUp
                 {"p|path=", "Path to folder to publish", p => path = p},
                 {"h|help", "show this message and exit", v => showHelp = v != null},
             };
+
+            var value = ConfigurationManager.AppSettings["AWSAccessKey"];
 
             try
             {
