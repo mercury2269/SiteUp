@@ -6,7 +6,7 @@ using System.Web;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace S3Publish.NetDna
+namespace SiteUp.NetDna
 {
     public class MaxCdn
     {

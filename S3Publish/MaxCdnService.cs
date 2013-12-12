@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Web;
-using System.Web.UI.WebControls;
-using S3Publish.NetDna;
+using SiteUp.NetDna;
 
-namespace S3Publish
+namespace SiteUp
 {
     public class MaxCdnService
     {

@@ -2,6 +2,7 @@
 using System.Linq;
 using Amazon.S3.Model;
 using Machine.Specifications;
+using SiteUp;
 
 namespace S3Publish.Specs
 {

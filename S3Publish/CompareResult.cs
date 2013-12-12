@@ -1,4 +1,4 @@
-﻿namespace S3Publish
+﻿namespace SiteUp
 {
     public enum CompareStatus
     {

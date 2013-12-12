@@ -2,7 +2,7 @@
 using System.Linq;
 using Amazon.S3.Model;
 
-namespace S3Publish
+namespace SiteUp
 {
     public class ContentComparer
     {

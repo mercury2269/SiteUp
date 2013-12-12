@@ -2,25 +2,42 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using SiteUp.Mono.Options;
 
-namespace S3Publish
+namespace SiteUp
 {
     class Program
     {
-        public static string SiteDir = @"\_site";
         static void Main(string[] args)
         {
-            var path = Directory.GetCurrentDirectory();
-
-            var sitePath = path + SiteDir;
-            if (!Directory.Exists(sitePath))
+            string path = null;
+            bool help = false;
+            var options = new OptionSet()
             {
-                Console.WriteLine("Unable to find _site directory under the current root");
+                {"p|path=", "Path to folder to publish", p => path = p},
+                {"h|help"}
+            };
+
+            try
+            {
+                options.Parse(args);
+            }
+            catch (OptionException ex)
+            {
+                Console.WriteLine (ex.Message);
+                Console.WriteLine ("Try `siteup --help' for more information.");
+                return;
+            }
+
+            if (!Directory.Exists(path))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Unable to find {0} directory", path);
                 return;
             }
 
             var browser = new DirectoryBrowser();
-            var localFiles = browser.GetAllFiles(sitePath);
+            var localFiles = browser.GetAllFiles(path);
 
             var amazonService = new AmazonService();
             var s3Objects = amazonService.GetListOfAllObjects();
@@ -30,7 +47,7 @@ namespace S3Publish
             {
                 var filesToSync = compareResults.Where(p => p.Status != CompareStatus.Retained).ToList();
                 OutputToConsoleFilesToSync(compareResults);
-                amazonService.SyncModifiedFiles(filesToSync, sitePath);
+                amazonService.SyncModifiedFiles(filesToSync, path);
                 var maxCdnService = new MaxCdnService();
                 Console.WriteLine("Purging Cache");
                 maxCdnService.PurgeFiles(filesToSync.Select(p => p.Key).ToList());

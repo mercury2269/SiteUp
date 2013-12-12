@@ -4,7 +4,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 
-namespace S3Publish.NetDna
+namespace SiteUp.NetDna
 {
     public class OAuthBase
     {

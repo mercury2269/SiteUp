@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 
-namespace S3Publish
+namespace SiteUp
 {
     public class DirectoryBrowser
     {
