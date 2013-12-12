@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiteUp", "S3Publish\SiteUp.csproj", "{588F6B12-46CC-4362-ABEC-040F50B09715}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiteUp", "SiteUp\SiteUp.csproj", "{588F6B12-46CC-4362-ABEC-040F50B09715}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiteUp.Specs", "S3Publish.Specs\SiteUp.Specs.csproj", "{191AD47B-20E0-4793-8DB4-A280C00CF92D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiteUp.Specs", "SiteUp.Specs\SiteUp.Specs.csproj", "{191AD47B-20E0-4793-8DB4-A280C00CF92D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{BB1B6553-EACC-4CD5-A93E-37F01BF808AB}"
 	ProjectSection(SolutionItems) = preProject
