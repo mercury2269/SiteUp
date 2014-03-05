@@ -35,7 +35,7 @@ namespace SiteUp
 
             foreach (var result in results)
             {
-                var path = rootPath.EndsWith("\\") ? rootPath : rootPath + "\\" + result.Key;
+                var path = rootPath.EndsWith("\\") ? rootPath + result.Key : rootPath + "\\" + result.Key;
                 if (result.Status == CompareStatus.Added
                     || result.Status == CompareStatus.Modified)
                 {

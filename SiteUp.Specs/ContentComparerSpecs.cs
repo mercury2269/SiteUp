@@ -6,14 +6,17 @@ using SiteUp;
 
 namespace S3Publish.Specs
 {
-    [Subject(typeof(ContentComparer))]
-    public class when_comparing_local_content_with_same_keys_and_etags_as_s3_content
+    public class ContentComparerBase
     {
-        static ContentComparer Comparer; 
-        static List<LocalFile> LocalFiles = new List<LocalFile>();
-        static List<S3Object> S3Objects = new List<S3Object>();
-        static List<CompareResult> CompareResults = new List<CompareResult>();
-        
+        public static ContentComparer Comparer;
+        public static List<LocalFile> LocalFiles = new List<LocalFile>();
+        public static List<S3Object> S3Objects = new List<S3Object>();
+        public static List<CompareResult> CompareResults = new List<CompareResult>();
+    }
+
+    [Subject(typeof(ContentComparer))]
+    public class when_comparing_local_content_with_same_keys_and_etags_as_s3_content : ContentComparerBase
+    {
         Establish context = () =>
         {
             Comparer = new ContentComparer();
@@ -36,13 +39,8 @@ namespace S3Publish.Specs
     }
 
     [Subject(typeof (ContentComparer))]
-    public class when_content_is_modified
+    public class when_content_is_modified : ContentComparerBase
     {
-        static ContentComparer Comparer;
-        static List<LocalFile> LocalFiles = new List<LocalFile>();
-        static List<S3Object> S3Objects = new List<S3Object>();
-        static List<CompareResult> CompareResults = new List<CompareResult>();
-
         Establish context = () =>
         {
             Comparer = new ContentComparer();
@@ -59,13 +57,8 @@ namespace S3Publish.Specs
     }
 
     [Subject(typeof(ContentComparer))]
-    public class when_local_items_were_added
+    public class when_local_items_were_added :ContentComparerBase
     {
-        static ContentComparer Comparer;
-        static List<LocalFile> LocalFiles = new List<LocalFile>();
-        static List<S3Object> S3Objects = new List<S3Object>();
-        static List<CompareResult> CompareResults = new List<CompareResult>();
-
         Establish context = () =>
         {
             Comparer = new ContentComparer();
@@ -88,13 +81,8 @@ namespace S3Publish.Specs
     }
 
     [Subject(typeof(ContentComparer))]
-    public class when_local_items_are_deleted
+    public class when_local_items_are_deleted : ContentComparerBase
     {
-        static ContentComparer Comparer;
-        static List<LocalFile> LocalFiles = new List<LocalFile>();
-        static List<S3Object> S3Objects = new List<S3Object>();
-        static List<CompareResult> CompareResults = new List<CompareResult>();
-
         Establish context = () =>
         {
             Comparer = new ContentComparer();
@@ -116,13 +104,8 @@ namespace S3Publish.Specs
     }
 
     [Subject(typeof(ContentComparer))]
-    public class when_items_are_added_retained_and_deleted
+    public class when_items_are_added_retained_and_deleted : ContentComparerBase
     {
-        static ContentComparer Comparer;
-        static List<LocalFile> LocalFiles = new List<LocalFile>();
-        static List<S3Object> S3Objects = new List<S3Object>();
-        static List<CompareResult> CompareResults = new List<CompareResult>();
-
         Establish context = () =>
         {
             Comparer = new ContentComparer();

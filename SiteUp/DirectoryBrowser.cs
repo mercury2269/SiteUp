@@ -13,7 +13,6 @@ namespace SiteUp
             return GetAllFilesInPath(rootPath).Select(path => new LocalFile
                                                            {
                                                                Key = GetFileKey(rootPath, path), 
-                                                               Path = path,
                                                                ETag = CreateEtag(path)
                                                            })
                 .ToList();

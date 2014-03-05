@@ -61,11 +61,13 @@
     <Compile Include="CompareResult.cs" />
     <Compile Include="ContentComparer.cs" />
     <Compile Include="DirectoryBrowser.cs" />
+    <Compile Include="IMaxCdnConfiguration.cs" />
     <Compile Include="LocalFile.cs" />
     <Compile Include="MaxCdnService.cs" />
+    <Compile Include="MaxCdn\IMaxCdnApi.cs" />
     <Compile Include="Mono.Options\Options.cs" />
-    <Compile Include="NetDna\MaxCdn.cs" />
-    <Compile Include="NetDna\OAuthBase.cs" />
+    <Compile Include="MaxCdn\MaxCdnApi.cs" />
+    <Compile Include="MaxCdn\OAuthBase.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

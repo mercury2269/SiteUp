@@ -41,6 +41,9 @@
     <Reference Include="Machine.Specifications.Clr4">
       <HintPath>..\S3Publish\packages\Machine.Specifications.0.5.16\lib\net40\Machine.Specifications.Clr4.dll</HintPath>
     </Reference>
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.2.1402.2112\lib\net40\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -52,6 +55,7 @@
   <ItemGroup>
     <Compile Include="CompareResultsBuilder.cs" />
     <Compile Include="ContentComparerSpecs.cs" />
+    <Compile Include="MaxCdnServiceSpecs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

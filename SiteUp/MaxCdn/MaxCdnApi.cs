@@ -8,28 +8,28 @@ using Newtonsoft.Json.Linq;
 
 namespace SiteUp.NetDna
 {
-    public class MaxCdn
+    public class MaxCdnApi : IMaxCdnApi
     {
-        private string _consumerKey = "";
-        private string _consumerSecret = "";
-        private string _alias = "";
-        private int _requestTimeout = 30;
+        private IMaxCdnConfiguration _config;
 
         private const string _netDNABaseAddress = "https://rws.netdna.com";
 
-        public MaxCdn(string alias, string consumerKey, string consumerSecret, int requestTimeout = 30)
+        public MaxCdnApi(IMaxCdnConfiguration configuration)
         {
-            _consumerKey = consumerKey;
-            _alias = alias;
-            _consumerSecret = consumerSecret;
-            _requestTimeout = requestTimeout;
+            _config = configuration;
+        }
+
+        public bool PurgeFile(string key)
+        {
+            var file = key.StartsWith("/") ? key : "/" + key;
+            return Delete("/zones/pull.json/" + _config.Zone + "/cache?file=" + Uri.EscapeDataString(file));
         }
 
         public dynamic Get(string url, bool debug = false)
         {            
             var requestUrl = GenerateOAuthRequestUrl(url, "GET");
 
-            var request = new ApiWebClient(_requestTimeout);            
+            var request = new ApiWebClient(_config.RequestTimeout);            
             var response = request.DownloadString(requestUrl);
 
             var result = JObject.Parse(response);
@@ -81,7 +81,7 @@ namespace SiteUp.NetDna
         private string GenerateOAuthRequestUrl(string url, string method)
         {
             Uri uri;
-            Uri.TryCreate(_netDNABaseAddress + "/" + _alias + url, UriKind.Absolute, out uri);
+            Uri.TryCreate(_netDNABaseAddress + "/" + _config.Alias + url, UriKind.Absolute, out uri);
 
             var normalizedUrl = "";
             var normalizedParams = "";
@@ -90,7 +90,7 @@ namespace SiteUp.NetDna
             var nonce = oAuth.GenerateNonce();
             var timeStamp = oAuth.GenerateTimeStamp();
             var sig =
-                HttpUtility.UrlEncode(oAuth.GenerateSignature(uri, _consumerKey, _consumerSecret, "", "", method, timeStamp,
+                HttpUtility.UrlEncode(oAuth.GenerateSignature(uri, _config.ConsumerKey, _config.ConsumerSecret, "", "", method, timeStamp,
                                                               nonce, OAuthBase.SignatureTypes.HMACSHA1, out normalizedUrl,
                                                               out normalizedParams));
             var requestUrl = normalizedUrl + "?" + normalizedParams + "&oauth_signature=" + sig;
